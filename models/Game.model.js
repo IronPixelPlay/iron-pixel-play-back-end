@@ -19,7 +19,7 @@ const gameSchema = new Schema({
 
   category: {
     type: String,
-    enum: ["action", "shooting", "adventure"],
+    enum: ["Action", "Shooting", "Adventure", "Trivia"],
   },
 
   instructions: String,
