@@ -22,10 +22,9 @@ router.post("/games", (req, res, next) => {
     Game.create(newGame)
         .then(response => res.json(response))
         .catch(err => {
-            console.log("Error creating new project...", err);
+            console.log("Error creating new game :( ...", err);
             res.status(500).json({
-            message: "Error creating a new project",
-            error: err
+            message: "We are sorry, we couldn't create your game",
         });
     });
 });
