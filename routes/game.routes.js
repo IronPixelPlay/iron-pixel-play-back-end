@@ -43,7 +43,6 @@ router.post("/games", isAuthenticated, (req, res, next) => {
 
 router.get("/games", (req, res, next) => {
     Game.find()
-        .populate("review")
         .then(allGames => res.json(allGames))
         .catch((err) => {
             console.log("Error getting the list of games...", err);
@@ -62,7 +61,6 @@ router.get("/games/:gameId", (req, res, next) => {
     }
 
     Game.findById(gameId)
-        .populate("review")
         .then((game) => res.status(200).json(game))
         .catch((err) => {
             console.log("Error getting the user's game...", err);
