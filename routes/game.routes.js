@@ -4,7 +4,18 @@ const mongoose = require("mongoose");
 const Review = require("../models/Review.model")
 const Game = require("../models/Game.model")
 
+const fileUploader = require("../config/cloudinary.config");
+
 const { isAuthenticated } = require("../middleware/jwt.middleware");
+
+router.post("/upload", fileUploader.single("image"), (req, res, next) => {
+    console.log("file is: ", req.file)
+    if (!req.file) {
+        next(new Error("No file uploaded!"));
+        return;
+    }
+    res.json({ fileUrl: req.file.path });
+});
 
 router.post("/games", isAuthenticated, (req, res, next) => {
     const { userId, title, image, demo, category, instructions, description, gitHubLink, reviewId } = req.body
