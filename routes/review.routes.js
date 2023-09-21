@@ -29,7 +29,7 @@ router.post("/games/:gameId/reviews", isAuthenticated, (req, res, next) => {
 
 
 router.get("/games/:gameId/reviews", (req, res, next) => {
-  Review.find()
+  Review.find({game: req.params.gameId})
     .then((allReviews) => res.json(allReviews))
     .catch((err) => {
       console.log("Error getting the list of reviews...", err);
