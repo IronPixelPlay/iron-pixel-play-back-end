@@ -9,33 +9,28 @@ const gameSchema = new Schema({
     type: String,
     required: [true, "Title is required"],
   },
-
   image: String,
-
   demo: {
     type: String,
     required: true,
   },
-
   category: {
     type: String,
     enum: ["Action", "Shooting", "Adventure", "Trivia"],
   },
-
   instructions: String,
-
   description: String,
-
   gitHubLink: String,
-
   review: [
     {
       type: Schema.Types.ObjectId,
       ref: "Review",
     },
   ],
+},
+{
+  timestamps: true
 });
-
 
 const Game = model("Game", gameSchema);
 
