@@ -21,12 +21,12 @@ const gameSchema = new Schema({
   instructions: String,
   description: String,
   gitHubLink: String,
-  review: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Review",
-    },
-  ],
+  // reviews: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "Review",
+  //   },
+  // ],
 },
 {
   timestamps: true

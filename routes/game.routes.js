@@ -18,10 +18,10 @@ router.post("/upload", fileUploader.single("image"), (req, res, next) => {
 });
 
 router.post("/games", isAuthenticated, (req, res, next) => {
-    const { userId, title, image, demo, category, instructions, description, gitHubLink, reviewId } = req.body
+    const { title, image, demo, category, instructions, description, gitHubLink } = req.body
 
     const newGame = {
-        user: userId,
+        user: req.payload._id,
         title,
         image,
         demo,
@@ -29,7 +29,6 @@ router.post("/games", isAuthenticated, (req, res, next) => {
         instructions,
         description,
         gitHubLink,
-        review: [reviewId]
     }
 
     Game.create(newGame)
@@ -42,7 +41,7 @@ router.post("/games", isAuthenticated, (req, res, next) => {
         });
 });
 
-router.get("/games", isAuthenticated, (req, res, next) => {
+router.get("/games", (req, res, next) => {
     Game.find()
         .populate("review")
         .then(allGames => res.json(allGames))
