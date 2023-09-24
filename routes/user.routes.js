@@ -7,25 +7,33 @@ const Game = require("../models/Game.model")
 
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 
-router.get("/user", isAuthenticated, (req, res) => {
-    User.findById(req.payload._id)
-        .then((user) => {
-            if (!user) {
-                return res.status(404).json({ message: "User not found" });
-            }
-            const userProfile = {
-                name: user.name,
-                games: user.games,
-                reviews: user.reviews,
-            };
 
-            res.json(userProfile);
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).json({ message: "Server error" });
-        });
+router.get("/user", isAuthenticated, async (req, res, next) => {
+  const userId = req.payload._id;
+
+  try {
+    const userData = await User.findById(userId);
+    const userGame = await Game.find({ user: userId });
+    const userReviews = await Review.find({ user: userId });
+
+    const profileInfo = {
+      user: userData,
+      game: userGame,
+      reviews: userReviews,
+    };
+
+    res.json(profileInfo);
+  } catch {
+    (error) => {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    };
+  }
 });
+
+
+
+router.get("/user/")
 
 
 module.exports = router;

@@ -17,7 +17,11 @@ const reviewSchema = new Schema({
         type: String,
         required: [true, "Review is required"]
     },
-    rating: Number,
+    rating: {
+        type: Number,
+        minimum: 1,
+        maximum: 5
+    },
     played: {
         type: Boolean,
         default: false
