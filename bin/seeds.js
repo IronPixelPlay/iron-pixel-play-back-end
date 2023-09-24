@@ -23,12 +23,12 @@ const games = [
 
   {
     "user": "64f5dbafba8c17cead1fb58e",
-    "title": "~~~ Save the Titanic ~~~",
+    "title": "Save the Titanic",
     "image": "https://www.cruisehive.com/wp-content/uploads/2022/11/titanic5-696x392.jpg",
     "demo": "https://johges.github.io/Save-the-Titanic/",
     "category": "Adventure",
     "instructions": "Use the arrow keys up and down to manoeuvre the ship and avoid the obstacles or hit the coal islands. The arrow key right will accelerate the Titanic for a few seconds.",
-    "description": "Let us rewrite history. You are the captain of the legendary Titanic. Your aim? You want to manoeuvre the Titanic and all its passengers safely and quickly to New York.",
+    "description": "Let us rewrite history. You are the captain of the legendary Titanic.",
     "gitHubLink": "https://github.com/johges/Save-the-Titanic",
     "review": [],
   },
