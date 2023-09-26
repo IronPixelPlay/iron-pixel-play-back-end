@@ -19,6 +19,7 @@ const reviewSchema = new Schema({
     },
     rating: {
         type: Number,
+        required: [true, "Rating is required"],
         minimum: 1,
         maximum: 5
     },
