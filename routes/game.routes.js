@@ -70,4 +70,40 @@ router.get("/games/:gameId", (req, res, next) => {
         });
 });
 
+router.put("/games/:gameId/edit", (req, res, next) => {
+    const { gameId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(gameId)) {
+        res.status(400).json({ message: "Specified id is no valid" });
+        return;
+    }
+
+    Game.findByIdAndUpdate(gameId, req.body, { new: true })
+        .then((updateGame) => res.json(updateGame))
+        .catch((err) => {
+            console.log("Error updating the user's game...", err);
+            res.status(500).json({
+                message: "We are sorry, we couldn't update your game",
+            });
+        });
+});
+
+router.delete("/games/:gameId", (req, res, next) => {
+    const { gameId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(gameId)) {
+        res.status(400).json({ message: 'Specified id is not valid' });
+        return;
+    }
+
+    Game.findByIdAndRemove(gameId)
+        .then(() => res.json({ message: `Your game was removed successfully.` }))
+        .catch((err) => {
+            console.log("Error deleting the user's game...", err);
+            res.status(500).json({
+                message: "We are sorry, we couldn't delete your game",
+            });
+        });
+})
+
 module.exports = router;
