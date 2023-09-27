@@ -109,4 +109,18 @@ router.delete("/games/:gameId", (req, res, next) => {
         });
 })
 
+router.get("/games/sort/:category", (req, res, next) => {
+    const {category} = req.params;
+
+    Game.find({category: category})
+    .then((filteredGames) => {res.json(filteredGames)})
+    .catch((err) => {
+      console.log("Error filtering the games...", err);
+      res.status(500).json({
+        message: "We are sorry, we couldn't display the games by category",
+      });
+    });
+
+} )
+
 module.exports = router;
