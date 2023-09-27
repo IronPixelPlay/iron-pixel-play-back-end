@@ -16,17 +16,12 @@ const gameSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ["Action-Adventure", "Shooter", "Fighting", "Quiz & Trivia", "Other", "Strategy", "Sports & Racing", "Puzzle", "Not Specified"],
+    enum: ["Action-Adventure", "Shooter", "Fighting", "Quiz&Trivia", "Other", "Strategy", "Sports&Racing", "Puzzle", "Not-Specified"],
   },
   instructions: String,
   description: String,
   gitHubLink: String,
-  // reviews: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "Review",
-  //   },
-  // ],
+
 },
 {
   timestamps: true
