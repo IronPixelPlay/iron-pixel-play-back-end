@@ -96,7 +96,10 @@ router.delete("/games/:gameId", (req, res, next) => {
         return;
     }
 
-    Game.findByIdAndRemove(gameId)
+    Review.deleteMany({ game: gameId })
+        .then(() => {
+            return Game.findByIdAndRemove(gameId)
+        })
         .then(() => res.json({ message: `Your game was removed successfully.` }))
         .catch((err) => {
             console.log("Error deleting the user's game...", err);
