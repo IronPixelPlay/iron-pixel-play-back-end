@@ -14,7 +14,7 @@ router.get("/user", isAuthenticated, async (req, res, next) => {
   try {
     const userData = await User.findById(userId);
     const userGame = await Game.find({ user: userId });
-    const userReviews = await Review.find({ user: userId });
+    const userReviews = await Review.find({ user: userId }).populate('game');
 
     const profileInfo = {
       user: userData,
@@ -70,8 +70,8 @@ router.get("/user/:userId", isAuthenticated, async (req, res, next) => {
   try {
     const userData = await User.findById(userId);
     const userGame = await Game.find({ user: userId });
-    const userReviews = await Review.find({ user: userId });
-
+    const userReviews = await Review.find({ user: userId }).populate('game');
+    
     const profileInfo = {
       user: userData,
       game: userGame,
