@@ -5,6 +5,9 @@ const gameSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  owner: {
+    type: String
+  },
   title: {
     type: String,
     required: [true, "Title is required"],

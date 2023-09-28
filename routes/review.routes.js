@@ -9,6 +9,7 @@ router.post("/games/:gameId/reviews", isAuthenticated, (req, res, next) => {
 
     const newReview = { 
     user: req.payload._id,
+    owner: req.payload.image,
     game: req.params.gameId,
     title: req.body.title, 
     review: req.body.review, 

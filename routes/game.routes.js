@@ -22,6 +22,7 @@ router.post("/games", isAuthenticated, (req, res, next) => {
 
     const newGame = {
         user: req.payload._id,
+        owner: req.payload.image,
         title,
         image,
         demo,
